@@ -1,0 +1,29 @@
+os: linux
+dist: focal
+env: DOCKER_ID="vcity/demo-datagora-deambulation-bron"
+language: node_js
+node_js:
+  - 14
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: "Docker build and run"
+      script:
+        - docker build -t $DOCKER_ID .
+        - docker run --rm --detach -t $DOCKER_ID
+        - travis_wait 2
+        - docker stop $(docker ps -a -q --filter ancestor=$DOCKER_ID --format="{{.ID}}")
+    - stage: "Markdown link checks"
+      language: node_js
+      node_js: 12
+      script:
+        - npm install --global remark-cli remark-validate-links
+        - remark -u validate-links .
+        - |
+          export FAILURE_THRESHOLD=1
+          export warnings=`remark -u validate-links . 2>&1 | grep warning | grep "Link to unknown" | wc -l`
+          if [ $warnings -gt $FAILURE_THRESHOLD ]; then
+            exit 1;
+          fi
