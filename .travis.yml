@@ -1,6 +1,5 @@
 os: linux
 dist: focal
-env: DOCKER_ID="vcity/demo-datagora-deambulation-bron"
 language: node_js
 node_js:
   - 14
@@ -11,10 +10,9 @@ jobs:
   include:
     - stage: "Docker build and run"
       script:
-        - docker build -t $DOCKER_ID .
-        - docker run --rm --detach -t $DOCKER_ID
+        - ./buildAndRun.sh
         - travis_wait 2
-        - docker stop $(docker ps -a -q --filter ancestor=$DOCKER_ID --format="{{.ID}}")
+        - ./stop.sh
     - stage: "Markdown link checks"
       language: node_js
       node_js: 12

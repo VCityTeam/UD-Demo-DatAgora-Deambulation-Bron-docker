@@ -1,27 +1,9 @@
-# Demo Deambulation Bron
+# Demo *Deambulation Bron*
 
-Create a docker of a [demo of Bron in which to wander](https://github.com/VCityTeam/UD-Demo-Deambulation-Bron).
-_See the [online version](https://deambulation-bron.vcityliris.data.alpha.grandlyon.com/)_.
+Build and run a docker container with the [demo of the Bron campus in which to wander in third person](https://github.com/VCityTeam/UD-Demo-Deambulation-Bron).
+See the online version at https://deambulation-bron.vcityliris.data.alpha.grandlyon.com/ .
 
-The demo uses a [SimpleServer](https://github.com/VCityTeam/UD-SimpleServer), based on [ExpressJS](https://en.wikipedia.org/wiki/Express.js) web-server.
-
-Clone the repo :
-
+Cloning this repository and running the [`buildAndRun.sh`](./buildAndRun.sh) script should be enough (look at its content for more insights) :
 ```bash
-git clone https://github.com/VCityTeam/UD-Demo-Deambulation-Bron-docker.git
-cd UD-Demo-Deambulation-Bron-docker
+git clone https://github.com/VCityTeam/UD-Demo-DatAgora-Deambulation-Bron-docker && cd UD-Demo-DatAgora-Deambulation-Bron-docker && ./buildAndRun.sh 
 ```
-
-Build the docker image with
-
-```bash
-docker build -t demo_bron .
-```
-
-and run the container with
-
-```bash
-docker run -p 8084:80/tcp -t demo_bron
-```
-
-and open a web browser on URL `http://localhost:8084/`
