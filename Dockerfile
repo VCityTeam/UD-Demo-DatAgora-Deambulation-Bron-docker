@@ -1,7 +1,7 @@
 FROM ubuntu:focal
 
 LABEL maintainer "VCityTeam"
-LABEL source.repo "https://github.com/VCityTeam/UD-Viz-Template-docker"
+LABEL source.repo "https://github.com/VCityTeam/UD-Demo-DatAgora-Deambulation-Bron-docker"
 
 ######### Install packages required by UD-Viz demo
 # We don't want any interaction from package installation during the docker image building.
